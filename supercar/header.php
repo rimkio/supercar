@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="cell shrink">
-                                <div class="o-header__car-dropdown js-header__dropdowns ">
+                                <div class="o-header__car-dropdown js-header__dropdowns <?= (is_page_template('templates/sold.php') || is_page_template('templates/used-cars.php')) ? 'is-hidden' : '' ?>">
                                     <div class="c-car-selector js-car-selector js-cursor-link">
                                         <div class="c-car-selector__col c-car-selector__col--left js-car-selector__left-col">
                                             <a class="c-car-selector__link js-car-selector__left-link" href="/used-cars/">

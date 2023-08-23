@@ -24,6 +24,21 @@ if (!function_exists('spc_create_custom_post_type')) {
 			)
 		);
 
+
+		register_post_type(
+			'vehicle',
+			array(
+				'labels' => [
+					'name' => __('Vehicle'),
+					'singular_name' => __('Vehicle')
+				],
+				'public' => true,
+				'menu_icon' => 'dashicons-car',
+				'has_archive' => 'used-cars',
+				'rewrite' => array('slug' => 'vehicle', 'with_front' => false)
+			)
+		);
+
 	}
 
 	add_action('init', 'spc_create_custom_post_type', 0); // Register Custom Taxonomy

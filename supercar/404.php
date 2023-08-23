@@ -1,36 +1,30 @@
 <?php
-/**
- * The template for displaying the 404 template in the Twenty Twenty theme.
- *
- * @package WordPress
- * @subpackage Twenty_Twenty
- * @since Twenty Twenty 1.0
- */
-
 get_header();
 ?>
 
-<main id="site-content">
-
-	<div class="section-inner thin error404-content">
-
-		<h1 class="entry-title"><?php _e( 'Page Not Found', 'twentytwenty' ); ?></h1>
-
-		<div class="intro-text"><p><?php _e( 'The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place.', 'twentytwenty' ); ?></p></div>
-
-		<?php
-		get_search_form(
-			array(
-				'aria_label' => __( '404 not found', 'twentytwenty' ),
-			)
-		);
-		?>
-
-	</div><!-- .section-inner -->
-
-</main><!-- #site-content -->
-
-<?php //get_template_part( 'template-parts/footer-menus-widgets' ); ?>
-
+<div class="scroller js-scroller">
+	<main class="error-404" role="main">
+		<div class="o-flexible-content o-flexible-content--flush">
+			<div class="o-hero o-hero--fill o-hero--v-centered o-hero--x-centered js-parallax">
+				<div class="grid-container">
+					<div class="grid-x align-center">
+						<div class="cell small-12 medium-8">
+							<div class="o-hero__inner js-parallax__element" data-parallax-y="-10" >
+								<div class="o-hero__heading">
+									<h1>
+										Page not found
+									</h1>
+									<p>We couldn't find what you were looking for.</p>
+									<a href="/" class="c-button c-button--alpha"><span>Go Home</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<?php get_template_part('template-parts/global', 'signup'); ?>
+</div>
 <?php
 get_footer();
