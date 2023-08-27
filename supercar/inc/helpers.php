@@ -10,7 +10,7 @@ if (!function_exists('mix')) {
         if (array_key_exists($pathWithSlash, $manifestArray)) {
             return THEME_DIR_URI . '/dist/' . ltrim($manifestArray[$pathWithSlash], '/');
         }
-        //        No file was found in the manifest, return whatever was passed to mix().
+        //No file was found in the manifest, return whatever was passed to mix().
         return  $pathWithOutSlash;
     }
 }

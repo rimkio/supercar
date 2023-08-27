@@ -1,0 +1,38 @@
+.c-newsletter form.wpcf7-form.init [type="submit"] {
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9375rem;
+    min-width: 13.33em;
+    outline: none;
+    padding: 1.33em 2.13em;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: top;
+    white-space: normal;
+    border: 1px solid #cbc0b6;
+    border-radius: 3.33em;
+    overflow: hidden;
+    position: relative;
+    color: #ffffff;
+    background: transparent;
+}
+
+.c-newsletter form.wpcf7-form.init p label {
+    width: 100%;
+}
+
+.c-newsletter form.wpcf7-form.init p {
+    display: flex;
+    gap: 3.125rem;
+}
+
+@media (max-width: 640px) {
+    .c-newsletter form.wpcf7-form.init p {
+        display: block;
+        gap: 0rem;
+    }
+}

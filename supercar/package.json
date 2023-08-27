@@ -1,5 +1,5 @@
 {
-  "name": "astra",
+  "name": "supercars",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,11 +20,6 @@
     "sass-loader": "^12.1.0"
   },
   "dependencies": {
-    "bootstrap": "v4.5.3",
-    "font-awesome": "^4.7.0",
-    "gsap": "^3.12.2",
-    "jquery": "^3.6.0",
-    "slick-carousel": "^1.8.1",
-    "smooth-scrollbar": "^8.8.4"
+    "jquery": "^3.6.0"
   }
 }

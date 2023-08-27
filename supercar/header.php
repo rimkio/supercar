@@ -1,15 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html <?php language_attributes(); ?>>
 
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
-    <?php wp_head(); ?>
+	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-    <?php wp_body_open(); ?>
+    <?php wp_body_open();
+	$phone_footer = get_field('phone_footer', 'options');
+	$logo = get_field('logo_top_footer', 'options');
+    ?>
     <header class="o-header o-header--home js-header">
         <div class="grid-container fluid">
             <div class="grid-x">
@@ -21,10 +23,10 @@
                                     <a class="o-header__home-link" href="/">
                                         <div class="o-header__logos js-header__logos">
                                             <div class="o-header__large-logo">
-                                                <img alt="" data-src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-white.svg" class=" ls-is-cached lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-white.svg"><noscript><img alt="" data-src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-white.svg" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-white.svg" alt="" /></noscript>
+                                                <img alt="" data-src="<?= $logo['url']; ?>" class=" ls-is-cached lazyloaded" src="<?= $logo['url']; ?>">
                                             </div>
                                             <div class="o-header__small-logo">
-                                                <img alt="" data-src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-small-white.svg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-small-white.svg"><noscript><img alt="" data-src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-small-white.svg" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" /><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2021/08/alexanders-logo-small-white.svg" alt="" /></noscript>
+                                                <img alt="" data-src="<?= $logo['url']; ?>" class="lazyloaded" src="<?= $logo['url']; ?>">
                                             </div>
                                         </div>
                                     </a>
@@ -50,8 +52,8 @@
                             <div class="cell auto">
                                 <div class="o-header__end">
                                     <div class="o-header__call-icon show-for-small-only">
-                                        <a class="c-call-icon" href="tel:01423325800" target="_self">
-                                            Call 01423 325800 </a>
+                                        <a class="c-call-icon" href="tel:<?= $phone_footer; ?>" target="_self">
+                                            Call <?= $phone_footer; ?> </a>
                                     </div>
                                     <div class="o-header__toggle">
                                         <a href="#" class="c-menu-toggle js-menu-toggler">

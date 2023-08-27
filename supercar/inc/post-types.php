@@ -18,9 +18,26 @@ if (!function_exists('spc_create_custom_post_type')) {
 				],
 				'menu_icon' => 'dashicons-testimonial',
 				'public' => true,
+				'publicly_queryable' => false,
 				'exclude_from_search' => true,
 				'has_archive' => false,
 				'rewrite' => array('slug' => 'customer-reviews', 'with_front' => false)
+			)
+		);
+
+		register_post_type(
+			'team',
+			array(
+				'labels' => [
+					'name' => __('Team'),
+					'singular_name' => __('Team')
+				],
+				'menu_icon' => 'dashicons-groups',
+				'public' => true,
+				'supports' => array( 'title', 'editor','thumbnail'),
+				'publicly_queryable' => false,
+				'exclude_from_search' => true,
+				'has_archive' => false,				
 			)
 		);
 
@@ -37,6 +54,16 @@ if (!function_exists('spc_create_custom_post_type')) {
 				'has_archive' => 'used-cars',
 				'rewrite' => array('slug' => 'vehicle', 'with_front' => false)
 			)
+		);
+
+		register_taxonomy(
+			'department',
+			'team',
+			[
+				'label' => __('Department'),
+				'hierarchical' => true,
+				'rewrite' => array('slug' => 'department', 'with_front' => false)
+			]
 		);
 
 	}
