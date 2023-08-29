@@ -2315,7 +2315,7 @@
                 key: "getCanvasContent",
                 value: function() {
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "get_meet_the_team"
@@ -2618,7 +2618,7 @@
                 key: "carLazyLoad",
                 value: function() {
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "get_vehicles_transient_more"
@@ -3241,7 +3241,7 @@
                 value: function(e) {
                     var t = this;
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "get_single_review",
@@ -3262,7 +3262,7 @@
                 key: "getCarouselReviews",
                 value: function() {
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "api_business_unit"
@@ -3315,7 +3315,7 @@
                 key: "getReviews",
                 value: function(e) {
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "api_business_unit"
@@ -3348,7 +3348,7 @@
                 value: function(e) {
                     var t = a()("a#next").data("page");
                     a().ajax({
-                        url: "/wp-admin/admin-ajax.php",
+                        url: "/wp/wp-admin/admin-ajax.php",
                         type: "post",
                         data: {
                             action: "get_tp_page",

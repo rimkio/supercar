@@ -1,38 +1,69 @@
-.c-newsletter form.wpcf7-form.init [type="submit"] {
-    cursor: pointer;
-    display: inline-block;
-    font-size: .9375rem;
-    min-width: 13.33em;
-    outline: none;
-    padding: 1.33em 2.13em;
-    text-align: center;
-    text-decoration: none;
-    transition: all .3s;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    vertical-align: top;
-    white-space: normal;
-    border: 1px solid #cbc0b6;
-    border-radius: 3.33em;
-    overflow: hidden;
-    position: relative;
-    color: #ffffff;
-    background: transparent;
-}
-
-.c-newsletter form.wpcf7-form.init p label {
-    width: 100%;
-}
-
-.c-newsletter form.wpcf7-form.init p {
-    display: flex;
-    gap: 3.125rem;
-}
-
-@media (max-width: 640px) {
-    .c-newsletter form.wpcf7-form.init p {
-        display: block;
-        gap: 0rem;
-    }
-}
+.c-newsletter form.wpcf7-form.init [type="submit"] {
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9375rem;
+    min-width: 13.33em;
+    outline: none;
+    padding: 1.33em 2.13em;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: top;
+    white-space: normal;
+    border: 1px solid #cbc0b6;
+    border-radius: 3.33em;
+    overflow: hidden;
+    position: relative;
+    color: #ffffff;
+    background: transparent;
+}
+
+.c-newsletter form.wpcf7-form.init p label {
+    width: 100%;
+}
+
+.c-newsletter form.wpcf7-form.init p {
+    display: flex;
+    gap: 3.125rem;
+}
+
+body:not(.home) .o-header__car-dropdown.js-header__dropdowns {
+    display: none;
+}
+
+/*.home .o-header__car-dropdown.js-header__dropdowns {*/
+    /*display: initial;*/
+/*}*/
+
+.post-type-archive-vehicle footer.o-footer.js-footer.o-footer--primary {
+    display: block !important;
+}
+
+a.vehicle__tab-link.js-printpdf {
+    padding: 0.5rem 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle__features.js-accordion .vehicle__feature-list--column>p {
+    min-height: initial;
+}
+
+.c-home-hero__logo img {
+    height: 100px;
+}
+
+.cell.small-12.medium-8.s-wysiwyg p br {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .c-newsletter form.wpcf7-form.init p {
+        display: block;
+        gap: 0rem;
+    }
+}

@@ -21013,7 +21013,7 @@ body.is-menu-open .o-header.is-sticky {
 }
 
 .o-about-experience__play:before {
-    background-image: url(/wp-content/uploads/2023/08/icon-play.svg);
+    background-image: url(../img/icon-play.svg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: 30%;
@@ -21904,7 +21904,7 @@ body:not(.is-menu-open) .c-menu-toggle:hover .c-menu-toggle__line--long {
 
 @media print,screen and (min-width: 40em) {
     .c-posts-slider__backer {
-        /*background-image:url(../img/alexander-transparent-logo.png);*/
+        background-image:url(../img/alexander-transparent-logo.png);
         background-position: right -100px top;
         background-repeat: no-repeat;
         background-size: 40% auto;
@@ -25848,7 +25848,7 @@ body.page-about-us .c-magnetic-cursor--play .c-magnetic-cursor__inner {
 }
 
 .vehicle__action a:hover:before {
-    /*background-image: url(../img/print_black.png)*/
+    background-image: url(../img/print_black.png)
 }
 
 .vehicle__action a.social {
@@ -25856,15 +25856,15 @@ body.page-about-us .c-magnetic-cursor--play .c-magnetic-cursor__inner {
 }
 
 .vehicle__action a.social:before {
-    /*background-image: url(../img/share_white.png)*/
+    //background-image: url(../img/share_white.png);
 }
 
 .vehicle__action a.social.is-active:before,.vehicle__action a.social:hover:before {
-    /*background-image: url(../img/share_black.png)*/
+    //background-image: url(../img/share_black.png)
 }
 
 .vehicle__action a:before {
-    /*background-image: url(../img/print_white.png);*/
+    //background-image: url(../img/print_white.png);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -26439,6 +26439,10 @@ input:-webkit-autofill,input:-webkit-autofill:active,input:-webkit-autofill:focu
     margin-bottom: 1.5em
 }
 
+.s-blog p:first-of-type {
+    color: #cbc0b6;
+    font-size: 1.33em
+}
 
 #cookie-law-info-bar {
     background-color: #000!important

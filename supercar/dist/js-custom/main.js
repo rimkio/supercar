@@ -21,7 +21,7 @@ var swiper = new Swiper('.js-trustpilot-slider__slider_api', {
     clickable: true
   },
   breakpoints: {
-    320: {
+    767: {
       slidesPerView: 1.7,
       spaceBetween: 110
     },

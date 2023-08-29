@@ -8,13 +8,12 @@ $args = array(
 );
 $the_query = new WP_Query($args);
 ?>
-<div id="" class="c-trustpilot-slider js-trustpilot-slider">
+<div id="reviews" class="c-trustpilot-slider js-trustpilot-slider">
     <div class="grid-container">
         <div class="grid-x align-middle">
             <div class="cell small-shrink">
                 <div class="c-trustpilot-slider__sub-title">
-                    <div class="c-sub-title c-sub-title--line">
-                        CUSTOMER REVIEWS </div>
+                    <div class="c-sub-title c-sub-title--line"> CUSTOMER REVIEWS </div>
                 </div>
             </div>
         </div>

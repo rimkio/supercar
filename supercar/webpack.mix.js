@@ -5,7 +5,7 @@ mix.autoload({
    jquery: ['$', 'jQuery', 'window.jQuery']
 });
 mix.copyDirectory('assets/images', 'dist/images');
-mix.js('assets/js/main.js', 'dist/js-custom')
-   .sass('assets/scss/main.scss', 'dist/css')
+mix.js('assets/js/app.js', 'dist/js')
+   .sass('assets/scss/app.scss', 'dist/css')
    .extract()
    .version();

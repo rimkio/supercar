@@ -22,8 +22,7 @@ get_header(); ?>
             <div class="post-archive__container">
                 <div class="grid-x align-justify align-middle">
                     <div class="cell shrink">
-                        <h1 class="post-archive__title">
-                            NEWS </h1>
+                        <h1 class="post-archive__title"> NEWS </h1>
                     </div>
 
                 </div>
@@ -34,11 +33,9 @@ get_header(); ?>
                 <div class="grid-container c-post-hero__grid-container">
                     <div class="grid grid-x">
                         <div class="cell small-12 align-self-bottom">
-                            <div class="c-post-hero__category">
-                                News </div>
+                            <div class="c-post-hero__category"> News </div>
                             <div class="c-post-hero__featured-title">
-                                <h2>
-                                    ALEXANDERS NEWS </h2>
+                                <h2> SUPPERCAR NEWS </h2>
                             </div>
                         </div>
                     </div>
@@ -50,60 +47,24 @@ get_header(); ?>
                 <div class="grid-x">
                     <div class="cell small-12">
                         <div class="post-archive__grid">
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/car-of-the-week-our-aston-martin-vantage-v12-roadster/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/08/DSC_7759.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        Car of the week – Our Aston Martin Vantage V12 Roadster </div>
-                                </a>
-                            </div>
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/car-of-the-week-our-porsche-911-gt3-pdk-991-2-2/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/08/DSC_7452-2.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        Car Of The Week – Our Porsche 911 GT3 PDK (991.2) </div>
-                                </a>
-                            </div>
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/car-of-the-week-our-honda-nsx/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/08/DSC_7310.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        Car Of The Week – Our Honda NSX </div>
-                                </a>
-                            </div>
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/car-of-the-week-our-porsche-911-turbo-s-992-2/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/07/DSC_7193-2.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        Car Of The Week – Our Porsche 911 Turbo S (992) </div>
-                                </a>
-                            </div>
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/supercar-driver-secret-meet/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/07/578A5559-Enhanced-NR.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        The Supercar Driver Secret Meet </div>
-                                </a>
-                            </div>
-                            <div class="post-archive__grid-cell">
-                                <a href="https://www.alexandersprestige.co.uk/car-of-the-week-our-lamborghini-huracan-sto-2/" class="c-article c-article--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-article__image" style="background-image: url('https://www.alexandersprestige.co.uk/app/uploads/2023/07/DSC_6578.jpg')"></div>
-                                    <div class="c-article__category">
-                                    </div>
-                                    <div class="c-article__title">
-                                        CAR OF THE WEEK – Our Lamborghini Huracan STO </div>
-                                </a>
-                            </div>
+                            <?php if (have_posts()) : ?>
+                                <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');  ?>
+                                <div class="post-archive__grid-cell">
+                                    <a href="<?= get_the_permalink() ?>" class="c-article c-article--listed js-cursor-more js-tilt">
+                                        <div class="c-article__image" style="background-image: url('<?= $featured_img_url ?>')"></div>
+                                        <div class="c-article__category"> </div>
+                                        <div class="c-article__title"><?= get_the_title() ?></div>
+                                    </a>
+                                </div>
+                            <?php else : ?>
+                                <section class="no-results not-found">
+                                    <header class="page-header">
+                                        <h3 class="page-title"><?php esc_html_e('Nothing Found', ''); ?></h3>
+                                    </header><!-- .page-header -->
+                                </section><!-- .no-results -->
+                            <?php
+                            endif;
+                            ?>
                         </div>
                     </div>
                 </div>

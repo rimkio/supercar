@@ -3,6 +3,8 @@
 *   Template Name: Sold
 */
 get_header();
+$make = $_GET['make'];
+$orderby = $_GET['orderby'];
 ?>
 <div class="scroller js-scroller">
     <div class="post-type-archive-vehicle">
@@ -37,32 +39,28 @@ get_header();
                                                             <a data-option="make" data-filter="all-makes" class="selected">
                                                                 All makes
                                                             </a>
-                                                            <a class="" data-option="make" data-filter="Alfa Romeo">Alfa Romeo</a>
-                                                            <a class="" data-option="make" data-filter="Alpine">Alpine</a>
-                                                            <a class="" data-option="make" data-filter="Aston Martin">Aston Martin</a>
-                                                            <a class="" data-option="make" data-filter="Audi">Audi</a>
-                                                            <a class="" data-option="make" data-filter="Bentley">Bentley</a>
-                                                            <a class="" data-option="make" data-filter="BMW">BMW</a>
-                                                            <a class="" data-option="make" data-filter="Cupra">Cupra</a>
-                                                            <a class="" data-option="make" data-filter="Ferrari">Ferrari</a>
-                                                            <a class="" data-option="make" data-filter="Ford">Ford</a>
-                                                            <a class="" data-option="make" data-filter="Honda">Honda</a>
-                                                            <a class="" data-option="make" data-filter="Ineos">Ineos</a>
-                                                            <a class="" data-option="make" data-filter="Jaguar">Jaguar</a>
-                                                            <a class="" data-option="make" data-filter="Jeep">Jeep</a>
-                                                            <a class="" data-option="make" data-filter="Lamborghini">Lamborghini</a>
-                                                            <a class="" data-option="make" data-filter="Land Rover">Land Rover</a>
-                                                            <a class="" data-option="make" data-filter="Maserati">Maserati</a>
-                                                            <a class="" data-option="make" data-filter="McLaren">McLaren</a>
-                                                            <a class="" data-option="make" data-filter="Mercedes Benz">Mercedes Benz</a>
-                                                            <a class="" data-option="make" data-filter="Mini">Mini</a>
-                                                            <a class="" data-option="make" data-filter="Porsche">Porsche</a>
-                                                            <a class="" data-option="make" data-filter="Range Rover">Range Rover</a>
-                                                            <a class="" data-option="make" data-filter="Rolls-Royce">Rolls-Royce</a>
-                                                            <a class="" data-option="make" data-filter="Tesla">Tesla</a>
-                                                            <a class="" data-option="make" data-filter="Toyota">Toyota</a>
-                                                            <a class="" data-option="make" data-filter="Volkswagen">Volkswagen</a>
-                                                            <a class="" data-option="make" data-filter="Volvo">Volvo</a>
+															<?php
+															$taxonomy = 'product_cat';  // Replace with the slug of your taxonomy
+
+															$terms = get_terms(array(
+																'taxonomy' => $taxonomy,
+																'hide_empty' => false,
+															));
+															usort($terms, function($a, $b) {
+																return strcasecmp($a->name, $b->name);  // Case-insensitive string comparison
+															});
+															if (!empty($terms)) {
+																foreach ($terms as $term) {
+																	$term_slug = $term->slug;
+																	$term_title = $term->name;
+																	?>
+                                                                    <a class="" data-option="make"
+                                                                       data-filter="<?php echo $term_slug;?>"><?php echo $term_title;?></a>
+																	<?php
+																}
+															}
+
+															?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -106,253 +104,191 @@ get_header();
                             </a>
                         </div>
                         <div class="js-archive-sold" data-count="625">
-                            <span aria-current="page" class="page-numbers current">1</span>
-                            <a class="page-numbers" href="https://www.alexandersprestige.co.uk/sold/page/2/">2</a>
-                            <span class="page-numbers dots">…</span>
-                            <a class="page-numbers" href="https://www.alexandersprestige.co.uk/sold/page/52/">52</a>
-                            <a class="page-numbers" href="https://www.alexandersprestige.co.uk/sold/page/53/">53</a>
-                            <a class="next page-numbers" href="https://www.alexandersprestige.co.uk/sold/page/2/">Next »</a>
                             <div class="vehicle-archive__grid vehicle-archive__grid--four">
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2022-71-ferrari-812-superfast-gts-6-5-v12-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2022 (71) Ferrari 812 GTS 6.5 V12 Auto" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/main-new-pic-final-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/main-new-pic-final-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/main-new-pic-final-aspect-ratio-395-295-768x574.jpg" alt="2022 (71) Ferrari 812 GTS 6.5 V12 Auto"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2022 (71) Ferrari 812 GTS 6.5 V12 Auto </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
+								<?php
+								$args = array(
+									'post_type' => 'product',
+									'posts_per_page' => -1,
+									'meta_query' => array(
+										array(
+											'key' => '_stock_status',
+											'value' => 'outofstock',
+										),
+									),
+								);
+
+								if ( !empty($make) ) {
+									$make = str_replace('.', '', $make);
+									$category = get_term_by('slug', $make, $taxonomy);
+									$args = array(
+										'post_type' => 'product',
+										'posts_per_page' => -1,
+										'meta_query' => array(
+											array(
+												'key' => '_stock_status',
+												'value' => 'outofstock',
+											),
+										),
+										'tax_query' => array(
+											array(
+												'taxonomy' => $taxonomy,
+												'field' => 'term_id',
+												'terms' => $category->term_id, // Term ID of the category
+											),
+										),
+									);
+									if ( $orderby == 'highest-first' ) {
+										$args = array(
+											'post_type' => 'product',
+											'posts_per_page' => -1,
+											'orderby' => 'meta_value_num',
+											'meta_key' => '_price',
+											'order' => 'DESC',
+											'meta_query' => array(
+												array(
+													'key' => '_stock_status',
+													'value' => 'outofstock',
+												),
+											),
+											'tax_query' => array(
+												array(
+													'taxonomy' => $taxonomy,
+													'field' => 'term_id',
+													'terms' => $category->term_id, // Term ID of the category
+												),
+											),
+										);
+									} elseif ( $orderby == 'lowest-first' ) {
+										$args = array(
+											'post_type' => 'product',
+											'posts_per_page' => -1,
+											'orderby' => 'meta_value_num',
+											'meta_key' => '_price',
+											'order' => 'ASC',
+											'meta_query' => array(
+												array(
+													'key' => '_stock_status',
+													'value' => 'outofstock',
+												),
+											),
+											'tax_query' => array(
+												array(
+													'taxonomy' => $taxonomy,
+													'field' => 'term_id',
+													'terms' => $category->term_id, // Term ID of the category
+												),
+											),
+										);
+									} elseif ( $orderby == 'latest' ) {
+										$args = array(
+											'post_type' => 'product',
+											'posts_per_page' => -1,
+											'orderby' => 'date',
+											'order' => 'DESC',
+											'meta_query' => array(
+												array(
+													'key' => '_stock_status',
+													'value' => 'outofstock',
+												),
+											),
+											'tax_query' => array(
+												array(
+													'taxonomy' => $taxonomy,
+													'field' => 'term_id',
+													'terms' => $category->term_id, // Term ID of the category
+												),
+											),
+										);
+									} elseif ( $orderby == 'oldest' ) {
+										$args = array(
+											'post_type' => 'product',
+											'posts_per_page' => -1,
+											'orderby' => 'date',
+											'order' => 'ASC',
+											'meta_query' => array(
+												array(
+													'key' => '_stock_status',
+													'value' => 'outofstock',
+												),
+											),
+											'tax_query' => array(
+												array(
+													'taxonomy' => $taxonomy,
+													'field' => 'term_id',
+													'terms' => $category->term_id, // Term ID of the category
+												),
+											),
+										);
+									}
+								}
+
+								if ( !empty($_GET['search']) ) {
+									$args = array(
+										'post_type' => 'product',  // Specify the post type as 'vehicle'
+										'posts_per_page' => -1,    // Retrieve all posts
+										's' => isset($_GET['search']) ? $_GET['search'] : '',
+										'orderby' => 'date',
+										'order' => 'DESC',
+										'meta_query' => array(
+											array(
+												'key' => '_stock_status',
+												'value' => 'outofstock',
+											),
+										),
+									);
+								}
+
+								$query = new WP_Query($args);
+
+								if ($query->have_posts()) {
+									while ($query->have_posts()) {
+										$query->the_post();
+
+										// Retrieve post title
+										$title = get_the_title();
+
+										// Retrieve post thumbnail URL
+										$thumbnail = get_the_post_thumbnail_url();
+										$product = wc_get_product(get_the_ID());
+										// Retrieve the "_price" custom field value
+										$price = $product->get_price();
+										$categories = get_the_category(get_the_ID());
+										$terms = get_the_terms($post_id, 'product_cat');
+										$category_slug = $terms[0]->slug;
+										$post_date = get_post_field('post_date', get_the_ID());
+										$formatted_date = date('Y-m-d H:i:s', strtotime($post_date));
+
+										?>
+                                        <div class="grid-item <?php echo $category_slug; ?>" data-column="" data-category="<?php echo $category_slug; ?>" data-name="<?php echo $title; ?>">
+                                            <a href="<?php echo the_permalink(); ?>" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt">
+                                        <span class="c-vehicle__image display-block" data-large="<?php echo $thumbnail; ?>" data-small="<?php echo $thumbnail; ?>">
+                                            <img alt="<?php echo $title; ?>" data-src="<?php echo $thumbnail; ?>" class=" lazyloaded" src="<?php echo $thumbnail; ?>">
+                                        </span>
+                                                <span class="c-vehicle__detail ">
+                                            <span class="grid-container full">
+                                                <span class="grid grid-x align-justify">
+                                                    <span class="cell small-7">
+                                                        <h5 class="c-vehicle__heading">
+                                                            <?php echo $title; ?> </h5>
                                                     </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/ferrari-812-gts-v12/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2023 (72) Ferrari 812 GTS 6.5 V12" data-src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/thumbnasil-v2-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/thumbnasil-v2-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/thumbnasil-v2-aspect-ratio-395-295-768x574.jpg" alt="2023 (72) Ferrari 812 GTS 6.5 V12"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2023 (72) Ferrari 812 GTS 6.5 V12 </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
+                                                    <span class="cell small-5">
+                                                        <span class="c-vehicle__price">
+                                                            SOLD </span>
                                                     </span>
-                                                </div>
-                                            </div>
+                                                    <p class="price" style="display:none;"><?php echo $price; ?></p>
+                                                        <p class="time" style="display:none;"><?php echo intval(strtotime($post_date)); ?></p>
+                                                </span>
+                                            </span>
+                                        </span>
+                                            </a>
                                         </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2022-22-ferrari-sf90-stradale-4-0-v8-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2022 (22) Ferrari SF90 Stradale 4.0 V8 PHEV Auto [VAT Q]" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/11/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-4-aspect-ratio-395-295-768x573.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/11/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-4-aspect-ratio-395-295-768x573.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/11/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-4-aspect-ratio-395-295-768x573.jpg" alt="2022 (22) Ferrari SF90 Stradale 4.0 V8 PHEV Auto [VAT Q]"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2022 (22) Ferrari SF90 Stradale 4.0 V8 PHEV Auto [VAT Q] </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2019-19-lamborghini-aventador-lp-770-4-svj-isr-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2019 (19) Lamborghini Aventador LP 770-4 SVJ ISR Auto" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/04/1st_svj-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/04/1st_svj-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/04/1st_svj-aspect-ratio-395-295-768x574.jpg" alt="2019 (19) Lamborghini Aventador LP 770-4 SVJ ISR Auto"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2019 (19) Lamborghini Aventador LP 770-4 SVJ ISR Auto </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2020-20-rolls-royce-cullinan-black-badge-urban-v12-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2020 (20) Rolls Royce Cullinan Black Badge URBAN 6.75l V12 Auto" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/12/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-aspect-ratio-395-295-1-768x573.jpg" class=" ls-is-cached lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/12/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-aspect-ratio-395-295-1-768x573.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/12/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-aspect-ratio-395-295-1-768x573.jpg" alt="2020 (20) Rolls Royce Cullinan Black Badge URBAN 6.75l V12 Auto"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2020 (20) Rolls Royce Cullinan Black Badge URBAN 6.75l V12 Auto </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2022-22-lamborghini-huracan-sto-5-2-v10-auto-vatq/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2022 (22) Lamborghini Huracan STO LP640-2 5.2 V10 Auto [VAT Q]" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/10/Alexanders-Watermark-layer_SQUARE-New-Logo-1-aspect-ratio-395-295-768x574.jpg" class=" ls-is-cached lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/10/Alexanders-Watermark-layer_SQUARE-New-Logo-1-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/10/Alexanders-Watermark-layer_SQUARE-New-Logo-1-aspect-ratio-395-295-768x574.jpg" alt="2022 (22) Lamborghini Huracan STO LP640-2 5.2 V10 Auto [VAT Q]"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2022 (22) Lamborghini Huracan STO LP640-2 5.2 V10 Auto [VAT Q] </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2019-19-ferrari-488-pista-3-9t-v8/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2019 (19) Ferrari 488 Pista 3.9T V8" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/Alexanders-Watermark-layer_SQUARE-1-aspect-ratio-395-295-768x574.jpg" class=" ls-is-cached lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/Alexanders-Watermark-layer_SQUARE-1-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/06/Alexanders-Watermark-layer_SQUARE-1-aspect-ratio-395-295-768x574.jpg" alt="2019 (19) Ferrari 488 Pista 3.9T V8"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2019 (19) Ferrari 488 Pista 3.9T V8 </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/lamborghini-huracan-sto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2022 (72) Lamborghini Huracan STO LP640-2 5.2 V10 Auto" data-src="https://www.alexandersprestige.co.uk/app/uploads/2023/01/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-18-aspect-ratio-395-295-768x573.jpg" class=" ls-is-cached lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2023/01/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-18-aspect-ratio-395-295-768x573.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2023/01/Alexanders-Watermark-layer_SQUARE-New-Logo-96-dpi-18-aspect-ratio-395-295-768x573.jpg" alt="2022 (72) Lamborghini Huracan STO LP640-2 5.2 V10 Auto"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2022 (72) Lamborghini Huracan STO LP640-2 5.2 V10 Auto </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2019-68-ferrari-488-pista-3-9-t-v8-dct/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2019 (68) Ferrari 488 Pista 3.9T V8 DCT" data-src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/NEW-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/NEW-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2023/06/NEW-aspect-ratio-395-295-768x574.jpg" alt="2019 (68) Ferrari 488 Pista 3.9T V8 DCT"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2019 (68) Ferrari 488 Pista 3.9T V8 DCT </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2020-20-rolls-royce-cullinan-v12-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2020 (20) Rolls Royce Cullinan 6.75 V12 Auto" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/08/Alexanders-Watermark-layer_SQUARE-New-Logo-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/08/Alexanders-Watermark-layer_SQUARE-New-Logo-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/08/Alexanders-Watermark-layer_SQUARE-New-Logo-aspect-ratio-395-295-768x574.jpg" alt="2020 (20) Rolls Royce Cullinan 6.75 V12 Auto"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2020 (20) Rolls Royce Cullinan 6.75 V12 Auto </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2023-23-lamborghini-urus-s-2/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2023 (23) Lamborghini Urus S 4.0 V8" data-src="https://www.alexandersprestige.co.uk/app/uploads/2023/07/Alexanders-Watermark-layer_SQUARE-New-Logo-21-aspect-ratio-395-295-768x574.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2023/07/Alexanders-Watermark-layer_SQUARE-New-Logo-21-aspect-ratio-395-295-768x574.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2023/07/Alexanders-Watermark-layer_SQUARE-New-Logo-21-aspect-ratio-395-295-768x574.jpg" alt="2023 (23) Lamborghini Urus S 4.0 V8"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2023 (23) Lamborghini Urus S 4.0 V8 </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="https://www.alexandersprestige.co.uk/vehicle/2021-71-lamborghini-urus-nero-design-4-0-v8-auto/" class="c-vehicle c-vehicle--listed js-static--listed js-cursor-more js-tilt" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1); will-change: transform;">
-                                    <div class="c-vehicle__image">
-                                        <img alt="2021 (71) LAMBORGHINI URUS NERO DESIGN 4.0 V8 AUTO" data-src="https://www.alexandersprestige.co.uk/app/uploads/2022/05/DSC03010-768x575.jpg" class=" lazyloaded" src="https://www.alexandersprestige.co.uk/app/uploads/2022/05/DSC03010-768x575.jpg"><noscript><img src="https://www.alexandersprestige.co.uk/app/uploads/2022/05/DSC03010-768x575.jpg" alt="2021 (71) LAMBORGHINI URUS NERO DESIGN 4.0 V8 AUTO"></noscript>
-                                    </div>
-                                    <div class="c-vehicle__detail">
-                                        <div class="grid-container full">
-                                            <div class="grid grid-x align-justify">
-                                                <div class="cell small-7">
-                                                    <h5 class="c-vehicle__heading">
-                                                        2021 (71) LAMBORGHINI URUS NERO DESIGN 4.0 V8 AUTO </h5>
-                                                </div>
-                                                <div class="cell small-5">
-                                                    <span class="c-vehicle__price">
-                                                        SOLD
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+										<?php
+									}
+									wp_reset_postdata();
+								} else {
+									echo 'No vehicles found.';
+								}
+								?>
                             </div>
                         </div>
                     </div>

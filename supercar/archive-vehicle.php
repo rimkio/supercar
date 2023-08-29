@@ -107,8 +107,8 @@ $orderby = $_GET['orderby'];
 							<div class="vehicle-archive__grid vehicle-archive__grid--four js-archive-wrapper">
 								<?php
 								$args = array(
-									'post_type' => 'product',  // Specify the post type as 'vehicle'
-									'posts_per_page' => -1,    // Retrieve all posts
+									'post_type' => 'product',
+									'posts_per_page' => -1,
 								);
 
 								if ( !empty($make) ) {
