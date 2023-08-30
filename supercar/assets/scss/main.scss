@@ -23,3 +23,40 @@
         width: 1rem;
     }
 }
+
+.file-update-cf{
+    position: relative;
+    background-color: #242423;
+    border: 0;
+    padding: 0;
+    position: relative;
+    margin-bottom: 25px;
+    .max-size{
+        font-size: 11px!important;
+        margin-right: 1rem;
+        margin-top: 1rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    p{
+        margin-bottom: 0;
+    }
+    br{
+        display: none;
+    }
+    .wpcf7-form-control-wrap{
+        input{
+            padding: 14px 30px;
+            color: #ffffff;
+            font-size: 16px;
+            border: none;
+        }
+    }
+}
+
+.c-trustpilot-slider__slider-container{
+@media (max-width: 500px){
+    padding: 0 15px;
+}
+}

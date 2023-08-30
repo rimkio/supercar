@@ -3654,7 +3654,7 @@
                 key: "getSlides",
                 value: function() {
                     var e = this
-                      , t = ajaxUrl;
+                      , t = '/wp-admin/admin-ajax.php"';
                     a().ajax({
                         url: t,
                         type: "GET",

@@ -193,13 +193,44 @@ $tu_video = get_field('tu_video', get_the_ID());
                                         </div>
                                         <div class="o-about-experience__content-container">
                                             <div class="o-about-experience__content-block o-about-experience__content-block--medium js-about-experience__content-block">
-                                                <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight"><?= $tu_description ?> </span>
+                                                <?php
+                                                if ($tu_description) {
+                                                    $arr_desc = explode(". ", $tu_description);
+                                                    $count_w = count($arr_desc);
+                                                    foreach ($arr_desc as $k => $word) {
+                                                        $dot = ($k == count($arr_desc) - 1) ? '' : '.';
+                                                ?>
+                                                        <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight"><?= $word . $dot ?></span>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                             </div>
                                             <div class="o-about-experience__content-block o-about-experience__content-block--large js-about-experience__content-block">
-                                                <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight"><?= $tu_title_2 ?></span>
+                                                <?php
+                                                if ($tu_title_2) {
+                                                    $arr_tu_title_2 = explode("-", $tu_title_2);
+                                                    $count_w = count($arr_tu_title_2);
+                                                    foreach ($arr_tu_title_2 as $k => $word) {
+                                                ?>
+                                                        <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight" style="display:block"><?= $word ?></span>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                             </div>
                                             <div class="o-about-experience__content-block o-about-experience__content-block--large js-about-experience__content-block">
-                                                <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight"><?= $tu_title_3 ?></span>
+                                                <?php
+                                                if ($tu_title_3) {
+                                                    $arr_tu_title_3 = explode("-", $tu_title_3);
+                                                    $count_w = count($arr_tu_title_3);
+                                                    foreach ($arr_tu_title_3 as $k => $word) {
+                                                ?>
+                                                        <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight"  style="display:block"><?= $word ?></span>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>                                                
                                                 <br>
                                                 <span class="o-about-experience__content-block-highlight js-about-experience__content-block-highlight">
                                                     <div data-open="homeVideo" class="o-about-experience__play" aria-controls="homeVideo" aria-haspopup="dialog" tabindex="0">

@@ -86,8 +86,8 @@
     </div>
 
     <?php get_template_part('template-parts/global', 'nav-sell'); ?>
+    <?php get_template_part('template-parts/global', 'nav-about'); ?>
     <?php get_template_part('template-parts/global', 'reviews'); ?>
     <?php get_template_part('template-parts/global', 'meet-team'); ?>
     <?php get_template_part('template-parts/global', 'menus'); ?>
-    <?php get_template_part('template-parts/global', 'contact'); ?>
-    <?php get_template_part('template-parts/global', 'vehicle-enquiry'); ?>
+

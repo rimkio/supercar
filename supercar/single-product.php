@@ -386,37 +386,7 @@ if(!empty($overview_content)) {
 													}
 												}
 												?>
-												<div>
-													<a class="vehicle__tab-title vehicle__sub-heading js-accordion-title" href="#" data-tab="standard">
-														Standard Features <i class="far fa-chevron-down"></i>
-													</a>
-													<div class="vehicle__tab-panel js-accordion-panel" data-content="standard" style="display: none;">
-														<div class="vehicle__feature-title vehicle__sub-heading">
-															Standard Features </div>
-														<div class="vehicle__feature-list--column">
-															<p>Limited slip differential</p>
-															<p>Adaptive damping system with Skyhook</p>
-															<p>Carbon ceramic brakes</p>
-															<p>Carbon fibre clamshell bonnet with integrated horseshoe vent</p>
-															<p>LED headlights and taillights</p>
-															<p>Dynamic torque vectoring</p>
-															<p>Dynamic stability control</p>
-															<p>Heated seats</p>
-															<p>Cruise control</p>
-														</div>
-														<div class="vehicle__feature-list--column">
-															<p>360 camera</p>
-															<p>Keyless entry</p>
-															<p>Integrated satellite navigation system</p>
-															<p>DAB radio</p>
-															<p>iPod and iPhone integration and USB playback</p>
-															<p>Heated rear screen</p>
-															<p>Memory seats</p>
-															<p>Auto parking (parallel and bay)</p>
-															<p>Lightweight carpeted cabin</p>
-														</div>
-													</div>
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -522,12 +492,15 @@ if(!empty($overview_content)) {
 			</div>
 			<?php get_template_part('template-parts/shared', 'customer-reviews'); ?>
 		</div>
-		<script>
-            const ReserveVehicle = document.querySelector('#ReserveVehicle');
-            ReserveVehicle.addEventListener("click", () => {
-                fbq('track', 'ReserveClick');
-            })
-		</script>
+<!--		<script>-->
+<!--            const ReserveVehicle = document.querySelector('#ReserveVehicle');-->
+<!--            ReserveVehicle.addEventListener("click", () => {-->
+<!--                fbq('track', 'ReserveClick');-->
+<!--            })-->
+<!--		</script>-->
 		<?php get_template_part('template-parts/global', 'signup'); ?>
 	</div>
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/global', 'contact'); ?>
+<?php get_template_part('template-parts/global', 'vehicle-enquiry'); ?>
+<?php get_footer(); ?>
+

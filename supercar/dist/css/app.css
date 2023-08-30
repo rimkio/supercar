@@ -20498,7 +20498,7 @@ body.is-menu-open .o-header.is-sticky {
 
 @media print,screen and (max-width: 39.99875em) {
     .o-footer__logo img {
-        width:3.125rem
+        width:7.125rem
     }
 }
 
@@ -24967,7 +24967,7 @@ body.page-about-us .c-magnetic-cursor--play .c-magnetic-cursor__inner {
 }
 
 .lightbox-gallery__loader--background-icon {
-    background-image: url(../img/loader.svg);
+    background-image: url(/wp-content/uploads/2023/08/loader.svg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: 150px auto

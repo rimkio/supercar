@@ -75,20 +75,33 @@ $list_services_bodyshop = get_field('list_services_bodyshop', get_the_ID());
                                 </div>
                                 <div class="cell medium-5">
                                     <div class="o-cta-tabs">
-                                        <?php
-                                        if ($list_tab) {
-                                            echo '<ul class="vehicle__tabs">';
-                                            foreach ($list_tab as $tab) {
-                                                $label = $tab['label'];
-                                                $href = $tab['href'];
-                                        ?>
-                                                <li class="vehicle__tab">
-                                                    <a class="vehicle__tab-link js-contact-canvas" href="<?= $href ?>"><?= $label ?></a>
-                                                </li>
-                                        <?php
-                                            }
-                                            echo '</ul>';
-                                        } ?>
+<!--                                        --><?php
+//                                        if ($list_tab) {
+//                                            echo '<ul class="vehicle__tabs">';
+//                                            foreach ($list_tab as $tab) {
+//                                                $label = $tab['label'];
+//                                                $href = $tab['href'];
+//                                        ?>
+<!--                                                <li class="vehicle__tab">-->
+<!--                                                    <a class="vehicle__tab-link js-contact-canvas" href="--><?//= $href ?><!--">--><?//= $label ?><!--</a>-->
+<!--                                                </li>-->
+<!--                                        --><?php
+//                                            }
+//                                            echo '</ul>';
+//                                        } ?>
+
+                                        <ul class="vehicle__tabs">
+                                            <li class="vehicle__tab">
+                                                <a class="vehicle__tab-link js-contact-canvas" href="?enquiry=Aftersales">Book now</a>
+                                            </li>
+                                            <li class="vehicle__tab">
+                                                <a href="#" class="vehicle__tab-link js-vehicle-enquiry-canvas">
+                                                    Enquire </a>
+                                            </li>
+                                            <li class="vehicle__tab">
+                                                <a class="vehicle__tab-link " href="/contact/">Call now</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -382,4 +395,7 @@ $list_services_bodyshop = get_field('list_services_bodyshop', get_the_ID());
     </main>
     <?php get_template_part('template-parts/global', 'signup'); ?>
 </div>
+<?php get_template_part('template-parts/global', 'vehicle-enquiry'); ?>
+<?php get_template_part('template-parts/global', 'workshop'); ?>
+
 <?php get_footer();

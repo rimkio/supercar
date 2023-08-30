@@ -39,6 +39,29 @@ $ss_4_background = get_field('ss_4_background');
 $ss_5_title_h2 = get_field('ss_5_title_h2');
 $ss_5_button = get_field('ss_5_button');
 $ss_5_background = get_field('ss_5_background');
+
+if ( !empty($link_video) ) {
+	?>
+    <div class="reveal-overlay" style="display: none;"><div class="reveal large is-menu-open" id="homeVideo" data-reveal="mw1n49-reveal" data-v-offset="0" data-animation-in="fade-in" data-animation-out="fade-out" role="dialog" aria-hidden="true" data-yeti-box="homeVideo" data-resize="homeVideo" style="display: none; top: 0px;" tabindex="-1">
+            <button class="close-button" data-close="" aria-label="Close modal" type="button">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div class="video-embed js-cursor-play">
+                <div class="embed-container">
+                    <div class="controls">
+                        <button class="pause control" type="button" style="display: none;">
+                            <i class="fal fa-pause"></i>
+                        </button>
+                        <button class="play control" type="button" style="">
+                            <i class="fal fa-play"></i>
+                        </button>
+                    </div>
+                    <iframe title="<?php echo $title; ?>" src="<?= $link_video; ?>" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe></div>
+            </div>
+        </div>
+    </div>
+	<?php
+}
 ?>
 
 

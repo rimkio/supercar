@@ -61,6 +61,43 @@ a.vehicle__tab-link.js-printpdf {
     display: none;
 }
 
+.s-gravity-form [name="titleproduct"] {
+    pointer-events: none;
+}
+
+.s-form input[type=email], .s-form input[type=number], .s-form input[type=tel], .s-form input[type=text], .s-form textarea {
+    margin: 0;
+}
+
+[data-name="terms"] {
+    display: block;
+}
+
+.s-gravity-form input[type=submit]:hover {
+    background: #cbc0b6;
+    text-align: center;
+}
+
+.s-gravity-form .gfield_label {
+    position: relative;
+}
+
+[data-name="file-408"] {
+    display: block;
+}
+
+a.c-coverflow__open.js-slide-footer.js-lightbox__trigger_individual {
+    display: none;
+}
+
+.swiper-slide-active .c-coverflow__slide img {
+    pointer-events: none !important;
+}
+
+.c-newsletter form.wpcf7-form.init [type="submit"]:hover {
+    background: #cbc0b6;
+}
+
 @media (max-width: 640px) {
     .c-newsletter form.wpcf7-form.init p {
         display: block;

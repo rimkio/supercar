@@ -64,14 +64,14 @@ $phone_footer = get_field('phone_footer', 'options');
         .financial_disclosure {
             font-size: .8125rem;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3 !important;
+            -webkit-box-orient: vertical !important;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .financial_disclosure.show {
-            -webkit-line-clamp: 999;
+            -webkit-line-clamp: 999 !important;
         }
 
         .financial_disclosure_button {

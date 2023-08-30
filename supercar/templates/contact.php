@@ -37,7 +37,7 @@ $social_footer = get_field('social_footer', 'options');
                                     </div>
                                     <?php if ($contact_button) { ?>
                                         <div class="o-hero__cta">
-                                            <a class="c-button--alpha js-contact-canvas" href="<?= $contact_button['url'] ?>" target="<?= $contact_button['target'] ?>">
+                                            <a class="c-button--alpha js-contact-canvas js-vehicle-enquiry-canvas" href="<?= $contact_button['url'] ?>" target="<?= $contact_button['target'] ?>">
                                                 <span><?= $contact_button['title'] ?></span>
                                             </a>
                                         </div>
@@ -131,5 +131,5 @@ $social_footer = get_field('social_footer', 'options');
     </main>
     <?php get_template_part('template-parts/global', 'signup'); ?>
 </div>
-
+<?php get_template_part('template-parts/global', 'vehicle-enquiry'); ?>
 <?php get_footer();

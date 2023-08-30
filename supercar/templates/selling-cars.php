@@ -240,4 +240,5 @@ $selling_enquire_button = get_field('selling_enquire_button', get_the_ID());
     </div>
 
 </div>
+<?php get_template_part('template-parts/global', 'your-sell'); ?>
 <?php get_footer();
